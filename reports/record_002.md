@@ -342,9 +342,9 @@ def collect_data_for_sending() -> list[dict]:
 Результат
 <img width="1841" height="611" alt="изображение" src="https://github.com/user-attachments/assets/89c03cff-7bc0-4ab2-b3a1-f05268b7906b" />
 
+### Посмотреть изменения
 Чтобы посмотреть изменения, нужно кликнуть по кнопке с хэшем коммита, типа токго - `c8f23ac`, выделил жёлтым, это справа
 <img width="1841" height="611" alt="изображение" src="https://github.com/user-attachments/assets/25faaaf4-8415-4e29-9810-82433c20cac0" />
-
 
 Результат, плюсы (или зелёная заливка) и минусы (или красная заливкуа) укажут, что изменилось
 <img width="1540" height="423" alt="изображение" src="https://github.com/user-attachments/assets/4e3d5395-b0cf-4fc8-8a3d-f0b94bd79bde" />
