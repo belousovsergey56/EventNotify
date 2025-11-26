@@ -19,10 +19,7 @@ def to_unixtime() -> int:
     Returns:
         int: 1763715782 unixtime формат, целое число 
     """
-    date = datetime.now().strftime(DATETIME_FORMAT)
-    dt = datetime.strptime(date, DATETIME_FORMAT)
-    unix_time = int(time.mktime(dt.timetuple()))
-    return unix_time
+    return int(time.mktime(datetime.now().timetuple()))
 
 
 def to_datetime(unixtime: int) -> str:
@@ -30,7 +27,7 @@ def to_datetime(unixtime: int) -> str:
     Returns:
         str: возвращается строка вормате "2025-11-21 12:12:25" 
     """
-    return datetime.fromtimestamp(unixtime).strftime(DATETIME_FORMAT)
+    return str(datetime.fromtimestamp(unixtime))
 
 
 def get_events() -> dict:
@@ -203,6 +200,19 @@ def get_news() -> dict:
     return response.json()
 
 def date_event(dates: list):
+    """Преобразовать список дат в строку
+    Обходит список дат, преобразует из unixtime в datetime и сохраняет в строку
+    Args:
+        dates (list): список словарей с датами
+        [
+        {'end': 1622448000, 'start': 1618732800},
+        {'end': 1633593600, 'start': 1633593600},
+        {'end': 1633692600, 'start': 1633692600},
+        ...
+        ]
+    Returns:
+        str: С 2025-12-13 00:00:00 по 2026-01-12 00:00:00
+    """
     result = ""
     for i in dates:
         start = to_datetime(i.get("start"))
@@ -275,21 +285,3 @@ def collect_data_for_sending() -> list[dict]:
                 )
     return list_of_mesages
 
-    
-
-if __name__ == "__main__":
-    from pprint import pprint
-    a = collect_data_for_sending()
-    # a = get_news().get("results")
-    pprint(a)
-    # for _news in a:
-    #     pprint(
-    #             {
-    #                 "title": _news.get("title"),
-    #                 "description": _news.get("description"),
-    #                 "publication_date": to_datetime(_news.get("publication_date")),
-    #                 "image": _news.get("images")[0].get("image"),
-    #                 "site_url": _news.get("site_url")
-    #                 }
-    #             )
-    #
