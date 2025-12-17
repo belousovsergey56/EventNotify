@@ -37,7 +37,7 @@ def check_bot() -> dict:
     return requests.get(url).json()
 
 
-def send_message(chat_id: str, message: str, parse_mode="HTML") -> dict:
+def send_message(chat_id: str, message: str) -> dict:
     """Отправить сообщение
     Функция отправки сообщения на ресурс - в чат бот
     Args:
@@ -50,7 +50,6 @@ def send_message(chat_id: str, message: str, parse_mode="HTML") -> dict:
     param = {
             "chat_id": chat_id,
             "text": message,
-            "parse_mode": parse_mode
             }
     response = requests.post(url, json=param)
     return response.json()
