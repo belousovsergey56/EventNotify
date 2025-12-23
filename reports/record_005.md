@@ -49,7 +49,6 @@ from app_database.crud import add_id, get_all_id, remove_id
 from apscheduler.schedulers.background import BackgroundScheduler
 from apscheduler.triggers.cron import CronTrigger
 from flask import Flask, request
-from flask_sslify import SSLify
 ```
 #### Импорты
 - `import atexit` - модуль для автоматического завершения планировщика
@@ -60,17 +59,14 @@ from flask_sslify import SSLify
 - `from apscheduler.schedulers.background import BackgroundScheduler` - из библиотеки `apscheduler` импортируем `BackgroundScheduler` для настройки планировщика работы в фоне
 - `from apscheduler.triggers.cron import CronTrigger` - из библиотеки `apscheduler` импортируем `CronTrigger` для установки времени в расписании
 - `from flask import Flask, request` - из библиотеки `flask` импортируем `Flask` для создания экземпляра веб-приложения, `request` для обработки запросов поступающих в приложение
-- `from flask_sslify import SSLify` - импорт `SSLify` для создания безопасного `HTTP` соединения
 
 #### Настройки и функции
 
 ```python
 app = Flask("__name__")
-ssl_certificate = SSLify(app)
 scheduler = BackgroundScheduler()
 ```
 - `app = Flask("__name__")` - создание экземпляра веб-приложения, через переменную `app` теперь можно управлять приложением и записывать настройки.
-- `ssl_certificate = SSLify(app)` - для создания безопасного http соединения, добавляем эксземпляр `SSLify` приложение `app`
 - `scheduler = BackgroundScheduler()` - переменной `scheduler` присваиваем экземпляр планировщика, который будет работать в фоне.
 
 > Другая часть настройки планировщика ниже т.к. python при выполнении инструкции читает код сверху вниз.
@@ -289,10 +285,12 @@ def index():
     Печатет заголовок первого уровня, что бот работает.
     На второй строке техническое сообщение сv данными о боте.
     """
-    message = f"<h1>Бот работает</h1>\n{check_bot()}"
+    data_bot = json.dumps(check_bot(), indent=4)
+    message = f"<h1>Бот работает</h1>\n<pre>{data_bot}</pre>"
     return message
 ```
 - Кроме сообщения, что бот работает, добавил вывод функции `check_bot` для проверки токена
+- `json.dumps(check_bot(), indent=4)` - форматирование словаря для более читаемого вывода
 ---
 
 ```python
@@ -320,7 +318,7 @@ def webhook():
                 if removed_chat_id:
                     send_message(chat_id, "Чат из расписания убран, рассылка отменена.")
                 else:
-                    send_message(chat_id, "Не предвидженная ошибка, попробуй позже")
+                    send_message(chat_id, "В списке рассылок нет текущего чата")
             elif text == "/event":
                 send_message(chat_id, "Собираем данные о событиях, минуту...")
                 send_event_response(chat_id)
@@ -352,7 +350,7 @@ def webhook():
     - `elif text == "/delete":` - иначе если содержимое переменной `text` равно строке `/delete`
         - `removed_chat_id = remove_id(chat_id)` - присвоить переменной результат выполнения функции `remove_id(chat_id)`  - реузльтат или `True` или `False`
         - `if removed_chat_id:` - если `True` отправляем текстовое сообщение `send_message(chat_id, "Чат из расписания убран, рассылка отменена.")`
-        - Иначе отпарвляем текстовое сообщение с сообщение, что удаление не требуется `send_message(chat_id, "Не предвидженная ошибка, попробуй позже")`
+        - Иначе отпарвляем текстовое сообщение с сообщение, что удаление не требуется `send_message(chat_id, "В списке рассылок нет текущего чата")`
     - `elif text == "/event":` - иначе если содержимое переменной `text` равно строке `/event`
         - `send_message(chat_id, "Собираем данные о событиях, минуту...")` - отправить текстовое сообщение, что подгатавливаются события
         - `send_event_response(chat_id)` - выполнить функцию подготвоки и отправик сообщений
