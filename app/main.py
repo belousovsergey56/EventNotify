@@ -1,4 +1,5 @@
 import atexit
+import json
 import sys
 
 from api.api_kuda_go import collect_data_for_sending
@@ -8,7 +9,7 @@ from api.api_telegram_bot import (
     send_image,
     send_message,
 )
-from app_database.crud import add_id, get_all_id, remove_id, connection
+from app_database.crud import add_id, get_all_id, remove_id
 from apscheduler.schedulers.background import BackgroundScheduler
 from apscheduler.triggers.cron import CronTrigger
 from flask import Flask, request
@@ -135,7 +136,8 @@ def index():
     Печатет заголовок первого уровня, что бот работает.
     На второй строке техническое сообщение сv данными о боте.
     """
-    message = f"<h1>Бот работает</h1>\n{check_bot()}"
+    data_bot = json.dumps(check_bot(), indent=4)
+    message = f"<h1>Бот работает</h1>\n<pre>{data_bot}</pre>"
     return message
 
 
@@ -163,7 +165,7 @@ def webhook():
                 if removed_chat_id:
                     send_message(chat_id, "Чат из расписания убран, рассылка отменена.")
                 else:
-                    send_message(chat_id, "Не предвидженная ошибка, попробуй позже")
+                    send_message(chat_id, "В списке рассылок нет текущего чата")
             elif text == "/event":
                 send_message(chat_id, "Собираем данные о событиях, минуту...")
                 send_event_response(chat_id)
@@ -185,5 +187,3 @@ if __name__ == "__main__":
     print(result)
     app.run(host="0.0.0.0", port=5000, debug=True, use_reloader=False)
     print("Серрвер остановлен")
-    connection.close()
-    print("Подключение к базе данных закрыто")
