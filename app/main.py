@@ -13,11 +13,9 @@ from app_database.crud import add_id, get_all_id, remove_id
 from apscheduler.schedulers.background import BackgroundScheduler
 from apscheduler.triggers.cron import CronTrigger
 from flask import Flask, request
-from flask_sslify import SSLify
 
 
 app = Flask("__name__")
-ssl_certificate = SSLify(app)
 scheduler = BackgroundScheduler()
 
 def prepare_message(event: dict) -> str:
