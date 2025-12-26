@@ -81,7 +81,7 @@ py main.py localhost
 #### Вариант через консоль
 <img width="891" height="218" alt="image" src="https://github.com/user-attachments/assets/e81481e3-ef8c-4dc4-89eb-89e5176c8656" />
 
-#### Вариант через VSCode
+#### Вариант через кнопки пользовательского интерфейса VSCode
 - Запуск кода через Debugging возможно только когда в VSCode открыт файл с точкой доступа т.е. `main.py`
 <img width="723" height="400" alt="image" src="https://github.com/user-attachments/assets/d8a5119a-4ace-46e4-897c-531bfdf808b8" />
 
