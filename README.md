@@ -69,7 +69,12 @@ py main.py localhost
 
 ## Демонстрация
 
-### Запуск туннеля
+### Запуск туннелирования
+> Столкнулся с тем, что терминал не "видит" команду `tuna`, помогает убить терминал и открыть снова
+> 
+> Иконка мусорного ведра в VSCode
+<img width="217" height="139" alt="image" src="https://github.com/user-attachments/assets/f8710164-be23-4c55-9bfb-719aa8cd4df2" />
+
 <img width="913" height="252" alt="image" src="https://github.com/user-attachments/assets/4133daf5-bbd4-41a6-b7ff-e54676bab26a" />
 
 ### Запуск приложения
@@ -92,5 +97,24 @@ py main.py localhost
 <img width="428" height="338" alt="image" src="https://github.com/user-attachments/assets/5ebbe9e1-4e40-4ec5-ad10-3f249ce1686f" />
 
 ### Telegram
+#### Начало работы
 <img width="638" height="696" alt="image" src="https://github.com/user-attachments/assets/aa1232e1-84f5-452f-aa1e-b17ca6d458f1" />
 
+#### Однократный запрос
+<img width="564" height="697" alt="image" src="https://github.com/user-attachments/assets/2a382408-76e0-4507-9454-05acdae3c1c4" />
+
+#### Добавить в расписание
+<img width="579" height="624" alt="image" src="https://github.com/user-attachments/assets/295e9106-d154-4b64-a1d8-528143d24956" />
+
+- Если уже есть в базе
+<img width="377" height="137" alt="image" src="https://github.com/user-attachments/assets/33aaba60-76f1-407f-91af-e06fe18d826d" />
+
+
+#### Удалить из расписания
+<img width="564" height="198" alt="image" src="https://github.com/user-attachments/assets/dc80426b-a2fe-4ee5-9b95-d9eb188394dc" />
+
+- Если в базе уже нет
+<img width="383" height="139" alt="image" src="https://github.com/user-attachments/assets/f00f6160-95ef-4f43-a021-ca21797432bd" />
+
+#### Помощь
+<img width="523" height="236" alt="image" src="https://github.com/user-attachments/assets/ab157ee4-b2c1-4c11-9b96-8c20b880e5e7" />
