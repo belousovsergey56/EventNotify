@@ -145,7 +145,7 @@ def webhook():
         update = request.get_json()
         if 'message' in update:
             chat_id_list = get_all_id()
-            chat_id = update['message']['chat']['id']
+            chat_id = str(update['message']['chat']['id'])
             text = update['message'].get('text', '')
             if text == "/start":
                 if chat_id in chat_id_list:
