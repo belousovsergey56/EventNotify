@@ -27,7 +27,13 @@ def to_datetime(unixtime: int) -> str:
     Returns:
         str: возвращается строка вормате "2025-11-21 12:12:25" 
     """
-    return str(datetime.fromtimestamp(unixtime))
+    if unixtime is None or unixtime < 0:
+        return "Invalid date"
+    
+    try:
+        return datetime.fromtimestamp(unixtime).strftime(DATETIME_FORMAT)
+    except OSError as e:
+        return f"Error: {str(e)}"
 
 
 def get_events() -> dict:
