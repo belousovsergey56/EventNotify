@@ -9,7 +9,7 @@ from api.api_telegram_bot import (
     send_image,
     send_message,
 )
-from app_database.crud import add_id, get_all_id, remove_id
+from app_database.crud import add_id, get_all_id, remove_id, create_user_table
 from apscheduler.schedulers.background import BackgroundScheduler
 from apscheduler.triggers.cron import CronTrigger
 from flask import Flask, request
@@ -180,6 +180,7 @@ def webhook():
 
 
 if __name__ == "__main__":
+    create_user_table()
     public_url = sys.argv[1]
     result = set_webhook(public_url)
     print(result)
